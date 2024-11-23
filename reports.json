@@ -1,0 +1,448 @@
+{
+    "correlation_id": "123456789",
+    "status": "Complete",
+    "task_received": "2024-11-23 06:12:37.912585",
+    "from": "report_service",
+    "to": "client",
+    "data": [
+        {
+            "phone": 1,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 110,
+            "min_price_attempt": 110,
+            "avg_duration": 11.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.023671191000175895
+        },
+        {
+            "phone": 2,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 160,
+            "min_price_attempt": 160,
+            "avg_duration": 16.0,
+            "sum_price_above_15_sec": 320,
+            "total_duration": 0.022322810000332538
+        },
+        {
+            "phone": 3,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 590,
+            "min_price_attempt": 590,
+            "avg_duration": 59.0,
+            "sum_price_above_15_sec": 1180,
+            "total_duration": 0.020800144000531873
+        },
+        {
+            "phone": 4,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 960,
+            "min_price_attempt": 960,
+            "avg_duration": 96.0,
+            "sum_price_above_15_sec": 1920,
+            "total_duration": 0.01968685100109724
+        },
+        {
+            "phone": 5,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 760,
+            "min_price_attempt": 760,
+            "avg_duration": 76.0,
+            "sum_price_above_15_sec": 1520,
+            "total_duration": 0.01869562499996391
+        },
+        {
+            "phone": 6,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 770,
+            "min_price_attempt": 770,
+            "avg_duration": 77.0,
+            "sum_price_above_15_sec": 1540,
+            "total_duration": 0.017576992000613245
+        },
+        {
+            "phone": 7,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 2,
+                "10_30_sec": 0,
+                "30_sec": 0
+            },
+            "max_price_attempt": 70,
+            "min_price_attempt": 70,
+            "avg_duration": 7.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.016950024999459856
+        },
+        {
+            "phone": 8,
+            "error": "No data found for the given phone"
+        }
+    ],
+    "total_duration": 0
+},
+{
+    "correlation_id": "123456789",
+    "status": "Complete",
+    "task_received": "2024-11-23 06:12:37.915854",
+    "from": "report_service",
+    "to": "client",
+    "data": [
+        {
+            "phone": 1,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 110,
+            "min_price_attempt": 110,
+            "avg_duration": 11.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.015189916999588604
+        },
+        {
+            "phone": 2,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 160,
+            "min_price_attempt": 160,
+            "avg_duration": 16.0,
+            "sum_price_above_15_sec": 320,
+            "total_duration": 0.014659319000202231
+        },
+        {
+            "phone": 3,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 590,
+            "min_price_attempt": 590,
+            "avg_duration": 59.0,
+            "sum_price_above_15_sec": 1180,
+            "total_duration": 0.01341361899903859
+        },
+        {
+            "phone": 4,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 960,
+            "min_price_attempt": 960,
+            "avg_duration": 96.0,
+            "sum_price_above_15_sec": 1920,
+            "total_duration": 0.012023089000649634
+        },
+        {
+            "phone": 5,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 760,
+            "min_price_attempt": 760,
+            "avg_duration": 76.0,
+            "sum_price_above_15_sec": 1520,
+            "total_duration": 0.011800575000961544
+        },
+        {
+            "phone": 6,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 770,
+            "min_price_attempt": 770,
+            "avg_duration": 77.0,
+            "sum_price_above_15_sec": 1540,
+            "total_duration": 0.016810154000268085
+        },
+        {
+            "phone": 7,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 2,
+                "10_30_sec": 0,
+                "30_sec": 0
+            },
+            "max_price_attempt": 70,
+            "min_price_attempt": 70,
+            "avg_duration": 7.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.011652289000267047
+        },
+        {
+            "phone": 8,
+            "error": "No data found for the given phone"
+        }
+    ],
+    "total_duration": 0
+},
+{
+    "correlation_id": "123456789",
+    "status": "Complete",
+    "task_received": "2024-11-23 06:12:37.917203",
+    "from": "report_service",
+    "to": "client",
+    "data": [
+        {
+            "phone": 1,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 110,
+            "min_price_attempt": 110,
+            "avg_duration": 11.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.014548622999427607
+        },
+        {
+            "phone": 2,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 160,
+            "min_price_attempt": 160,
+            "avg_duration": 16.0,
+            "sum_price_above_15_sec": 320,
+            "total_duration": 0.01601455300078669
+        },
+        {
+            "phone": 3,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 590,
+            "min_price_attempt": 590,
+            "avg_duration": 59.0,
+            "sum_price_above_15_sec": 1180,
+            "total_duration": 0.010968795999360736
+        },
+        {
+            "phone": 4,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 960,
+            "min_price_attempt": 960,
+            "avg_duration": 96.0,
+            "sum_price_above_15_sec": 1920,
+            "total_duration": 0.009689433998573804
+        },
+        {
+            "phone": 5,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 760,
+            "min_price_attempt": 760,
+            "avg_duration": 76.0,
+            "sum_price_above_15_sec": 1520,
+            "total_duration": 0.015010924000307568
+        },
+        {
+            "phone": 6,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 770,
+            "min_price_attempt": 770,
+            "avg_duration": 77.0,
+            "sum_price_above_15_sec": 1540,
+            "total_duration": 0.00665408200075035
+        },
+        {
+            "phone": 7,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 2,
+                "10_30_sec": 0,
+                "30_sec": 0
+            },
+            "max_price_attempt": 70,
+            "min_price_attempt": 70,
+            "avg_duration": 7.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.008062584000072093
+        },
+        {
+            "phone": 8,
+            "error": "No data found for the given phone"
+        }
+    ],
+    "total_duration": 0
+},
+{
+    "correlation_id": "123456789",
+    "status": "Complete",
+    "task_received": "2024-11-23 06:12:37.917708",
+    "from": "report_service",
+    "to": "client",
+    "data": [
+        {
+            "phone": 1,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 110,
+            "min_price_attempt": 110,
+            "avg_duration": 11.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.005470837999382638
+        },
+        {
+            "phone": 2,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 2,
+                "30_sec": 0
+            },
+            "max_price_attempt": 160,
+            "min_price_attempt": 160,
+            "avg_duration": 16.0,
+            "sum_price_above_15_sec": 320,
+            "total_duration": 0.010230080999463098
+        },
+        {
+            "phone": 3,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 590,
+            "min_price_attempt": 590,
+            "avg_duration": 59.0,
+            "sum_price_above_15_sec": 1180,
+            "total_duration": 0.005326608999894233
+        },
+        {
+            "phone": 4,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 960,
+            "min_price_attempt": 960,
+            "avg_duration": 96.0,
+            "sum_price_above_15_sec": 1920,
+            "total_duration": 0.008700602998942486
+        },
+        {
+            "phone": 5,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 760,
+            "min_price_attempt": 760,
+            "avg_duration": 76.0,
+            "sum_price_above_15_sec": 1520,
+            "total_duration": 0.010218438999800128
+        },
+        {
+            "phone": 6,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 0,
+                "10_30_sec": 0,
+                "30_sec": 2
+            },
+            "max_price_attempt": 770,
+            "min_price_attempt": 770,
+            "avg_duration": 77.0,
+            "sum_price_above_15_sec": 1540,
+            "total_duration": 0.010146644999622367
+        },
+        {
+            "phone": 7,
+            "count_rows": 2,
+            "durations_breakdown": {
+                "10_sec": 2,
+                "10_30_sec": 0,
+                "30_sec": 0
+            },
+            "max_price_attempt": 70,
+            "min_price_attempt": 70,
+            "avg_duration": 7.0,
+            "sum_price_above_15_sec": 0,
+            "total_duration": 0.007747697998638614
+        },
+        {
+            "phone": 8,
+            "error": "No data found for the given phone"
+        }
+    ],
+    "total_duration": 0
+}

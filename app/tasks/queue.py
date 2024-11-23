@@ -1,106 +1,97 @@
 import asyncio
-import pika
-from pika.adapters.asyncio_connection import AsyncioConnection
+import aio_pika
+import asyncio
+
+from app.tasks.task_creator import CallRepository, TaskProcessor
+from app.config import setup_settings
+import aio_pika
+import ast
+import json
+import logging
+from datetime import datetime
 
 
-# class RabbitMQConnection:
-#     def __init__(self):
-#         self.connection = None
-#         self.channel = None
-#         self.queue_name = "report_queue"
-
-#     async def start(self):
-#         """Подключение к RabbitMQ и создание очереди."""
-#         loop = asyncio.get_event_loop()
-
-#         connection_future = asyncio.Future()
-
-#         def on_connection_open(connection):
-#             self.connection = connection
-#             connection_future.set_result(connection)
-#             # Теперь, когда соединение установлено, открываем канал
-#             self.connection.channel(on_open_callback=self.on_channel_open)
-
-#         def on_connection_error(connection_unused, error):
-#             connection_future.set_exception(error)
-
-#         # Создаем соединение
-#         self.connection = AsyncioConnection(
-#             pika.ConnectionParameters(host="rabbitmq"),  # используйте правильный хост
-#             on_open_callback=on_connection_open,
-#             on_open_error_callback=on_connection_error
-#         )
-
-#         await connection_future
-
-#     def on_channel_open(self, channel):
-#         """Коллбэк для открытия канала."""
-#         self.channel = channel
-
-#         # После открытия канала, создаем очередь
-#         queue_future = asyncio.Future()
-
-#         def on_queue_declared(_):
-#             queue_future.set_result(None)
-
-#         self.channel.queue_declare(queue=self.queue_name, callback=on_queue_declared)
-#         loop = asyncio.get_event_loop()
-#         loop.create_task(queue_future)
-
-#     async def stop(self):
-#         """Закрытие подключения."""
-#         if self.connection:
-#             self.connection.close()
-
-#     async def publish(self, message: str):
-#         """Публикация сообщения."""
-#         if not self.channel:
-#             raise Exception("Channel is not available")
-#         self.channel.basic_publish(
-#             exchange="", routing_key=self.queue_name, body=message
-#         )
+logger = logging.getLogger(__name__)
 
 
-# rabbitmq_connection = RabbitMQConnection()
+settings = setup_settings()
+
+call_repository = CallRepository(db_url=settings.mongo_url, db_name="report_db", collection_name="calls")
+task_processor = TaskProcessor(call_repository)
 
 
-class RabbitMQConnection:
-    def __init__(self, queue_name: str, host: str = "localhost"):
+# Обработчик сообщений
+async def process_message(message: aio_pika.IncomingMessage):
+    async with message.process():
+        tasks = []
+        message_body = message.body.decode()
+        data_dict = ast.literal_eval(message_body)
+        print(data_dict)
+        phones = data_dict.get("phones", [])
+        correlation_id = data_dict.get("correlation_id", "")
+        for phone in phones:
+            task = asyncio.create_task(task_processor.generate_report(phone))
+            tasks.append(task)
+
+        results = await asyncio.gather(*tasks)
+        print(type(results))
+        save_reports(results, correlation_id=correlation_id)
+
+def save_reports(results, correlation_id):
+    # Метаинформация для отчета
+    report_metadata = {
+        "correlation_id": correlation_id,  # Можно генерировать уникальный ID
+        "status": "Complete",
+        "task_received": datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f"),
+        "from": "report_service",
+        "to": "client",
+        "data": results,
+        "total_duration": sum(
+            result.get("durations_breakdown", {}).get("total_duration", 0)  # Используем пустой словарь и 0 по умолчанию
+            for result in results
+        )
+    }
+
+    # Открытие файла в режиме добавления
+    with open("reports.json", "a") as file:
+        # Если файл пустой, добавляем начальную скобку для массива JSON
+        if file.tell() == 0:
+            pass
+        else:
+            file.write(",\n")
+
+        # Запись метаинформации и данных
+        json.dump(report_metadata, file, indent=4)
+
+        logger.info("Отчеты сохранены в reports.json")
+
+
+class RabbitMQClient:
+    def __init__(self, url: str, queue_name: str):
+        self.url = url
         self.queue_name = queue_name
-        self.host = host
-        self.connection = None
-        self.channel = None
 
-    async def connect(self):
-        """Подключение к RabbitMQ."""
-        loop = asyncio.get_event_loop()
-        
-        self.connection = await loop.run_in_executor(
-            None,
-            lambda: pika.BlockingConnection(
-                pika.ConnectionParameters(
-                    self.host
-                )
-            )
-        )
-        print(1, self.connection)
-        self.channel = self.connection.channel()
-        print(2, self.channel)
+    async def receive_message(self):
+        """
+        Подключаемся к RabbitMQ, слушаем очередь и передаем сообщения на обработку.
+        """
+        connection = await aio_pika.connect_robust(self.url)
+        async with connection:
+            channel = await connection.channel()
+            queue = await channel.declare_queue(self.queue_name, durable=True)
+            await queue.consume(process_message)
+            logger.info("Ожидание сообщений...")
+            await asyncio.Future()  # Ждем бесконечно
 
-        self.channel.queue_declare(queue=self.queue_name)
+    async def send_message(self, message: str):
+        """
+        Отправляем сообщение в очередь RabbitMQ.
+        """
+        connection = await aio_pika.connect_robust(self.url)
+        async with connection:
+            channel = await connection.channel()
+            queue = await channel.declare_queue(self.queue_name, durable=True)
 
-    async def close(self):
-        """Закрытие подключения к RabbitMQ."""
-        if self.connection:
-            await asyncio.get_event_loop().run_in_executor(None, self.connection.close)
-
-    async def publish(self, message: str):
-        """Публикация сообщения в очередь."""
-        if not self.channel:
-            raise RuntimeError("RabbitMQ channel is not initialized.")
-        await asyncio.get_event_loop().run_in_executor(
-            None,
-            lambda: self.channel.basic_publish(
-                exchange="", routing_key=self.queue_name, body=message
-            )
-        )
+            message = aio_pika.Message(body=message.encode("utf-8"))
+            await channel.default_exchange.publish(message, routing_key=queue.name)
+            logger.info(f"Сообщение отправлено в очередь: {message.body.decode()}")

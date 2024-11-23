@@ -4,3 +4,5 @@ venv
 
 /kvint_task
 *.pyc
+
+/.data

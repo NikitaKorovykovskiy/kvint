@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/app
     environment:
-      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
     depends_on:
       - rabbitmq
       - mongodb
@@ -19,10 +19,12 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
   
   mongodb:
     image: mongo:latest
     ports:
       - "27017:27017"
+    volumes:
+      - ./.data/db:/data/db
